@@ -65,4 +65,39 @@ class API:
     def image_generation(self, text):
         response = self.client.image_generation(text)
         return response
+mydb.py - Database for User Data
+This file contains the Database class, which handles user registration, login, and storing credentials in a local JSON database (db.json).
+import json
+
+class Database:
+
+    def add_data(self, name, email, password):
+        with open('db.json', 'r') as rf:
+            database = json.load(rf)
+
+        if email in database:
+            return 0
+        else:
+            database[email] = [name, password]
+            with open('db.json', 'w') as wf:
+                json.dump(database, wf)
+            return 1
+
+    def search(self, email, password):
+        with open('db.json', 'r') as rf:
+            database = json.load(rf)
+            if email in database:
+                if database[email][1] == password:
+                    return 1
+                else:
+                    return 0
+            else:
+                return 0
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Acknowledgements
+Stable Diffusion: For providing an API for image generation.
+Tkinter: For enabling the creation of the user interface.
+nlpcloud: For providing the API to integrate Stable Diffusion into the application.
 
