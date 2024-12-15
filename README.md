@@ -55,6 +55,7 @@
 
 This file contains the class `API`, which handles image generation using the NLP Cloud API. The `image_generation` method takes a text prompt and returns an image based on that prompt.
 
+
 ```python
 import nlpcloud
 
@@ -65,12 +66,14 @@ class API:
     def image_generation(self, text):
         response = self.client.image_generation(text)
         return response
-mydb.py - Database for User Data
-This file contains the Database class, which handles user registration, login, and storing credentials in a local JSON database (db.json).
+```
+### `mydb.py` - Database for User Authentication
+This file contains the Database class, which handles the user registration and login functionality. It reads and writes to a local db.json file for storing user credentials (name, email, and password).
+
+```python
 import json
 
 class Database:
-
     def add_data(self, name, email, password):
         with open('db.json', 'r') as rf:
             database = json.load(rf)
@@ -93,11 +96,12 @@ class Database:
                     return 0
             else:
                 return 0
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
+```
 Acknowledgements
-Stable Diffusion: For providing an API for image generation.
-Tkinter: For enabling the creation of the user interface.
-nlpcloud: For providing the API to integrate Stable Diffusion into the application.
+NLP Cloud: For providing the API for image generation using Stable Diffusion.
+Python Libraries: Such as nlpcloud and json, which were instrumental in building the application.
+Contributor: [Ritij Srivastava] for developing and maintaining this project.
+
+
 
